@@ -31,8 +31,8 @@ def is_trading_day(now=None):
 
 
 def is_trading_time(now):
-    if not is_trading_day(now):
-        return False
+#    if not is_trading_day(now):
+#        return False
 
     t = now.time()
 
@@ -52,6 +52,18 @@ if not TICKER:
     raise ValueError("TICKER environment variable is not set")
 
 STATE_FILE = "state.txt"
+
+def load_state():
+    if os.path.exists(STATE_FILE):
+        with open(STATE_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_state(state):
+    with open(STATE_FILE, "w") as f:
+        json.dump(state, f)
+
+#state = load_state()
 
 # ===== データ取得（1分足）=====
 df = yf.download(
@@ -97,6 +109,7 @@ for s, l, n in [
 if not signals:
     print("クロスなし")
     exit()
+
 
 # ===== 前回状態読み込み =====
 prev_state = "NONE"
