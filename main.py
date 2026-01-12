@@ -11,6 +11,23 @@ import os
 JST = pytz.timezone("Asia/Tokyo")
 now = datetime.now(JST).time()
 
+def is_trading_time(now):
+#    if not is_trading_day(now):
+#        return False
+
+    t = now.time()
+
+    # 前場 9:00-11:30
+    if time(9, 0) <= t <= time(11, 30):
+        return True
+
+    # 後場 12:30-15:30
+    if time(12, 30) <= t <= time(15, 30):
+        return True
+
+    return False
+
+
 # 東証 昼休み（11:30–12:30）
 if not is_trading_time(now):
     exit()
@@ -29,22 +46,6 @@ def is_trading_day(now=None):
 
     return True
 
-
-def is_trading_time(now):
-#    if not is_trading_day(now):
-#        return False
-
-    t = now.time()
-
-    # 前場 9:00-11:30
-    if time(9, 0) <= t <= time(11, 30):
-        return True
-
-    # 後場 12:30-15:30
-    if time(12, 30) <= t <= time(15, 30):
-        return True
-
-    return False
 
 # ===== 設定 =====
 TICKER = os.environ.get("TICKER")   # 監視したい銘柄
