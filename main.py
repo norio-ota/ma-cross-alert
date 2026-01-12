@@ -11,11 +11,11 @@ import os
 JST = pytz.timezone("Asia/Tokyo")
 now = datetime.now(JST).time()
 
-def is_trading_time(now):
+def is_trading_time(nowDt):
 #    if not is_trading_day(now):
 #        return False
 
-    t = now.time()
+    t = nowDt
 
     # 前場 9:00-11:30
     if time(9, 0) <= t <= time(11, 30):
