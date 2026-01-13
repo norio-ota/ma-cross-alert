@@ -2,7 +2,7 @@ name: MA Cross Alert
 
 on:
   schedule:
-    - cron: "*/1 0-6 * * 1-5"
+    - cron: "*/1 0-5 * * 1-5"
   workflow_dispatch:
 
 jobs:
