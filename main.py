@@ -91,10 +91,10 @@ curr = df.iloc[-1]
 # ===== クロス判定 =====
 signals = []
 
-def check_cross(short, long, name):
-    if prev[short] < prev[long] and curr[short] > curr[long]:
+def check_cross(sht, lng, name):
+    if prev[sht] < prev[lng] and curr[sht] > curr[lng]:
         return f"📈 ゴールデンクロス ({name})"
-    if prev[short] > prev[long] and curr[short] < curr[long]:
+    if prev[sht] > prev[lng] and curr[sht] < curr[lng]:
         return f"📉 デッドクロス ({name})"
     return None
 
