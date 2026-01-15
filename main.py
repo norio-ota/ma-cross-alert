@@ -110,6 +110,7 @@ for s, l, n in [
 ]:
     result = check_cross(s, l, n)
     if result:
+        print("クロスあり")
         signals.append(result)
 
 if not signals:
@@ -122,6 +123,7 @@ prev_state = "NONE"
 if os.path.exists(STATE_FILE):
     with open(STATE_FILE) as f:
         prev_state = f.read().strip()
+        print(prev_state)
 
 current_state = "|".join(signals)
 
